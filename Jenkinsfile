@@ -2,10 +2,7 @@ node {
 
   properties([
     pipelineTriggers([
-      upstream(
-        threshold: hudson.model.Result.SUCCESS,
-        upstreamProjects: "test/${BRANCH_NAME}"
-      )
+      foo('test')
     ])
   ])
 
@@ -15,4 +12,11 @@ node {
   stage('Test') {
     sh 'echo "Test!"'
   }
+}
+
+def foo(String proj) {
+  upstream(
+    threshold: hudson.model.Result.SUCCESS,
+    upstreamProjects: "${proj}/${BRANCH_NAME}"
+  )
 }
