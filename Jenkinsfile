@@ -2,6 +2,7 @@ node {
 
   properties([
     pipelineTriggers([
+      [$class: "GitHubPushTrigger"],
       foo('test')
     ])
   ])
